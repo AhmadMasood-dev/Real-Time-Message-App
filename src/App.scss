@@ -130,7 +130,7 @@
     .userChat {
       display: flex;
       align-items: center;
-      padding: 10px;
+      padding: 5px 10px;
       gap: 10px;
       color: white;
       cursor: pointer;
@@ -138,8 +138,8 @@
         background-color: #2f2d52;
       }
       img {
-        width: 50px;
-        height: 50px;
+        width: 35px;
+        height: 35px;
         border-radius: 50%;
         object-fit: cover;
       }
@@ -147,11 +147,11 @@
         align-items: center;
 
         span {
-          font-size: 18px;
+          font-size: 14px;
           font-weight: 500;
         }
         p {
-          font-size: 14px;
+          font-size: 12px;
           color: lightgray;
         }
       }
@@ -159,5 +159,23 @@
   }
   .chat {
     flex: 2;
+
+    .chatInfo {
+      height: 50px;
+      background-color: #5d5b8d;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      color: lightgray;
+    }
+    .chatIcons {
+      display: flex;
+      gap: 10px;
+      img {
+        height: 24px;
+        cursor: pointer;
+      }
+    }
   }
 }
