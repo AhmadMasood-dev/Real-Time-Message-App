@@ -1,17 +1,17 @@
 // https://firebase.google.com/docs/web/setup#available-libraries
-
+import { getStorage } from "firebase/storage";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
-
 const firebaseConfig = {
-  apiKey: "AIzaSyBwGxugxEEPAYwwHqDbgnv043ulLUZKAnc",
-  authDomain: "chat-a3ff6.firebaseapp.com",
-  projectId: "chat-a3ff6",
-  storageBucket: "chat-a3ff6.appspot.com",
-  messagingSenderId: "1055657857554",
-  appId: "1:1055657857554:web:b75ca7b130ab7f02687ecb"
+  apiKey: "AIzaSyD9Jz3334DXGdjVgJOLEpJUWSKvqTcxFMY",
+  authDomain: "chat-f3a3a.firebaseapp.com",
+  projectId: "chat-f3a3a",
+  storageBucket: "chat-f3a3a.appspot.com",
+  messagingSenderId: "296877800359",
+  appId: "1:296877800359:web:f8d876239934bb060e1482",
 };
 
 export const app = initializeApp(firebaseConfig);
-export const auth =getAuth();
+export const auth = getAuth();
+export const storage = getStorage();

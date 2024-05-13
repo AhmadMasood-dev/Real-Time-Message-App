@@ -1,24 +1,44 @@
 import React, { useState } from "react";
 import Add from "../img/addAvatar.png";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firbase";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth, storage } from "../firbase";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+
 const Register = () => {
- const [err,setErr]=useState(false)
-  const handleSubmit =async (e) => {
+  const [err, setErr] = useState(false);
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     const displayName = e.target[0].value;
     const email = e.target[1].value;
     const password = e.target[2].value;
     const file = e.target[3].files[0];
 
-try {
-  
-  const res=await createUserWithEmailAndPassword(auth, email, password)
-} catch (err) {
-  setErr(true);
-  
-}
-      
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+
+      const storageRef = ref(storage, displayName);
+
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      uploadTask.on(
+        "state_changed",
+
+        (error) => {
+          setErr(true);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+            await updateProfile(res.user, {
+              displayName,
+              photoURL: downloadURL,
+            });
+          });
+        }
+      );
+    } catch (err) {
+      setErr(true);
+    }
   };
 
   return (
@@ -36,7 +56,7 @@ try {
             <span>Add an Avatar</span>
           </label>
           <button>Sign up</button>
-        {err&<span>Something went Wrong</span>}
+          {err & <span>Something went Wrong</span>}
         </form>
         <p>You do have account? Login</p>
       </div>
