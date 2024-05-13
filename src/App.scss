@@ -93,9 +93,16 @@
   height: 80%;
   display: flex;
   overflow: hidden;
+  
+  @include tablet{
+   width: 90%;
+  }
   .sidebar {
     flex: 1;
     background-color: #3e3c61;
+    @include tablet{
+     position: relative;  
+    }
     .navbar {
       display: flex;
       align-items: center;
@@ -106,6 +113,10 @@
       color: #ddddf7;
       .logo {
         font-weight: bold;
+        
+      @include tablet{
+        display: none;
+      }
       }
       .user {
         display: flex;
@@ -124,6 +135,11 @@
           font-size: 10px;
           border: none;
           cursor: pointer;
+          
+      @include tablet{
+       position: absolute;
+       bottom: 10px;
+      }
         }
       }
     }
@@ -146,7 +162,7 @@
     .userChat {
       display: flex;
       align-items: center;
-      padding: 5px 10px;
+      padding:10px;
       gap: 10px;
       color: white;
       cursor: pointer;
@@ -154,8 +170,8 @@
         background-color: #2f2d52;
       }
       img {
-        width: 35px;
-        height: 35px;
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
         object-fit: cover;
       }
