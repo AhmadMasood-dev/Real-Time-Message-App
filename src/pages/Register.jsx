@@ -3,7 +3,9 @@ import Add from "../img/addAvatar.png";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, storage } from "../firbase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-
+// import { setDoc } from "firebase/firestore/lite";
+import { db } from "../firbase";
+import { doc, setDoc } from "firebase/firestore";
 const Register = () => {
   const [err, setErr] = useState(false);
   const handleSubmit = async (e) => {
@@ -13,16 +15,18 @@ const Register = () => {
     const email = e.target[1].value;
     const password = e.target[2].value;
     const file = e.target[3].files[0];
-
+    console.log(displayName, email, password);
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
-
+      const user = auth.currentUser;
+      console.log(user, "res\n", res);
       const storageRef = ref(storage, displayName);
 
       const uploadTask = uploadBytesResumable(storageRef, file);
 
       uploadTask.on(
         "state_changed",
+        null,
 
         (error) => {
           setErr(true);
@@ -33,10 +37,17 @@ const Register = () => {
               displayName,
               photoURL: downloadURL,
             });
+            await setDoc(doc(db, "users", res.user.uid), {
+              uid: res.user.uid,
+              displayName,
+              email,
+              photoURL:downloadURL,
+            });
           });
         }
       );
     } catch (err) {
+      console.error(err)
       setErr(true);
     }
   };
