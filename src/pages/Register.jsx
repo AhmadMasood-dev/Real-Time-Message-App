@@ -3,11 +3,17 @@ import Add from "../img/addAvatar.png";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, storage } from "../firbase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-// import { setDoc } from "firebase/firestore/lite";
 import { db } from "../firbase";
 import { doc, setDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+
+
+
+
 const Register = () => {
   const [err, setErr] = useState(false);
+  const navigate=useNavigate()
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -43,6 +49,12 @@ const Register = () => {
               email,
               photoURL:downloadURL,
             });
+
+            await setDoc(doc(db, "userChats", res.user.uid), {});
+
+            navigate('/')
+
+
           });
         }
       );
@@ -67,7 +79,7 @@ const Register = () => {
             <span>Add an Avatar</span>
           </label>
           <button>Sign up</button>
-          {err & <span>Something went Wrong</span>}
+          {err && <span>Something went Wrong</span>}
         </form>
         <p>You do have account? Login</p>
       </div>
