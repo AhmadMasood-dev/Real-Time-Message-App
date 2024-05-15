@@ -68,21 +68,12 @@ const Search = () => {
           },
           [combinedId + ".date"]: serverTimestamp(),
         });
-        // userChats:{
-        //   zainId:{
-        //     combinedId:{
-        //       userInfo{
-        //         dn,img,id
-        //       },
-        //       lastMessage:'',
-        //       date:
-        //     }
-        //   }
-        // }
       }
     } catch (err) {}
 
     //create user chat
+    setUser(null);
+    setUsername("");
   };
 
   return (
