@@ -5,14 +5,11 @@ import { auth, storage } from "../firbase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { db } from "../firbase";
 import { doc, setDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
-
-
-
+import { useNavigate, Link } from "react-router-dom";
 
 const Register = () => {
   const [err, setErr] = useState(false);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,11 +18,11 @@ const Register = () => {
     const email = e.target[1].value;
     const password = e.target[2].value;
     const file = e.target[3].files[0];
-    console.log(displayName, email, password);
+
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       const user = auth.currentUser;
-      console.log(user, "res\n", res);
+      console.log("user", user);
       const storageRef = ref(storage, displayName);
 
       const uploadTask = uploadBytesResumable(storageRef, file);
@@ -47,19 +44,16 @@ const Register = () => {
               uid: res.user.uid,
               displayName,
               email,
-              photoURL:downloadURL,
+              photoURL: downloadURL,
             });
 
             await setDoc(doc(db, "userChats", res.user.uid), {});
 
-            navigate('/')
-
-
+            navigate("/");
           });
         }
       );
     } catch (err) {
-      console.error(err)
       setErr(true);
     }
   };
@@ -81,7 +75,9 @@ const Register = () => {
           <button>Sign up</button>
           {err && <span>Something went Wrong</span>}
         </form>
-        <p>You do have account? Login</p>
+        <p>
+          You do have account?<Link to="/login">Login</Link>
+        </p>
       </div>
     </div>
   );
