@@ -10,9 +10,9 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const email = e.target[0].value;
-    const password = e.target[1].value;
-
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log("passowrd", password, email);
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/");
@@ -27,8 +27,10 @@ const Login = () => {
         <span className="logo">Lama Chat</span>
         <span className="title">Login</span>
         <form onSubmit={handleSubmit}>
-          <input type="email" placeholder="email" />
-          <input type="password" placeholder="password" />
+          {/* <label>Enter your email:</label> */}
+          <input type="email" placeholder="email" name="email" />
+          {/* <label>Enter your password:</label> */}
+          <input type="password" placeholder="password" name="password" />
           <button>Sign in</button>
           {err && <span>Something went Wrong</span>}
         </form>

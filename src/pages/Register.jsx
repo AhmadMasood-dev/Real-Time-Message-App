@@ -18,7 +18,7 @@ const Register = () => {
     const email = e.target[1].value;
     const password = e.target[2].value;
     const file = e.target[3].files[0];
-
+    
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       const user = auth.currentUser;
