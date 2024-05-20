@@ -3,14 +3,13 @@ import Img from "../img/img.png";
 import Attach from "../img/attach.png";
 import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/chatContext";
-import { update } from "firebase/database";
 import { Timestamp, arrayUnion, doc, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
 import { db, storage } from "../firbase";
-import Message from "./Message";
 import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
 import { Navigate } from "react-router-dom";
+
 const Input = () => {
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
