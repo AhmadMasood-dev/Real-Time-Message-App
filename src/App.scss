@@ -93,15 +93,15 @@
   height: 80%;
   display: flex;
   overflow: hidden;
-  
-  @include tablet{
-   width: 90%;
+
+  @include tablet {
+    width: 90%;
   }
   .sidebar {
     flex: 1;
     background-color: #3e3c61;
-    @include tablet{
-     position: relative;  
+    @include tablet {
+      position: relative;
     }
     .navbar {
       display: flex;
@@ -113,10 +113,10 @@
       color: #ddddf7;
       .logo {
         font-weight: bold;
-        
-      @include tablet{
-        display: none;
-      }
+
+        @include tablet {
+          display: none;
+        }
       }
       .user {
         display: flex;
@@ -135,11 +135,11 @@
           font-size: 10px;
           border: none;
           cursor: pointer;
-          
-      @include tablet{
-       position: absolute;
-       bottom: 10px;
-      }
+
+          @include tablet {
+            position: absolute;
+            bottom: 10px;
+          }
         }
       }
     }
@@ -162,7 +162,7 @@
     .userChat {
       display: flex;
       align-items: center;
-      padding:10px;
+      padding: 10px;
       gap: 10px;
       color: white;
       cursor: pointer;
@@ -210,11 +210,14 @@
       }
     }
 
+    ::-webkit-scrollbar {
+      display: none;
+    }
     .messages {
       padding: 10px;
       background-color: #ddddf7;
       height: calc(100% - 160px);
-      overflow: scroll;
+      overflow-x: hidden;
       .message {
         display: flex;
         gap: 20px;
@@ -224,11 +227,12 @@
           flex-direction: column;
           color: gray;
           font-weight: 300;
+
           img {
             width: 40px;
             height: 40px;
-            object-fit: cover;
             border-radius: 50%;
+            object-fit: cover;
           }
         }
         .messageContent {
@@ -288,6 +292,7 @@
         }
         button {
           border: none;
+          cursor: pointer;
           padding: 10px 15px;
           color: white;
           background-color: #8da4f1;
