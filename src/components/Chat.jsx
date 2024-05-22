@@ -1,13 +1,12 @@
 import React, { useContext } from "react";
-import Cam from '../img/cam.png'
-import Add from '../img/add.png'
-import More from '../img/more.png'
+import Cam from "../img/cam.png";
+import Add from "../img/add.png";
+import More from "../img/more.png";
 import Messages from "./Messages.jsx";
-import Input from './Input.jsx'
+import Input from "./Input.jsx";
 import { ChatContext } from "../context/chatContext.jsx";
 const Chat = () => {
   const { data } = useContext(ChatContext);
-
   return (
     <div className="chat">
       <div className="chatInfo">
@@ -19,7 +18,7 @@ const Chat = () => {
         </div>
       </div>
       <Messages />
-      <Input/>
+      <Input />
     </div>
   );
 };
