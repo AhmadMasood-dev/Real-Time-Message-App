@@ -36,7 +36,7 @@ const Search = () => {
   };
 
   const handleKey = (e) => {
-    e.code === "Enter" && handleSearch();
+    handleSearch();
   };
   const handleSelect = async () => {
     //group exist in firestore or not and created if not
@@ -82,7 +82,7 @@ const Search = () => {
         <input
           type="text"
           placeholder="Find a user"
-          onKeyDown={handleKey}
+          oninput={handleSearch()}
           onChange={(e) => setUsername(e.target.value)}
           value={username}
         />
